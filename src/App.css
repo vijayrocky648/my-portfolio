@@ -1,7 +1,12 @@
 .App {
   text-align: center;
 }
-
+body{
+  margin: 0;
+  overflow-y: auto;
+  overflow-x: hidden; 
+  background: black
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -27,6 +32,9 @@
 .App-link {
   color: #61dafb;
 }
+.aboutsection{
+  background-color: white;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -35,4 +43,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+.customsettingnav{
+  position: sticky;
+  top:0;
+  z-index: 2;
 }

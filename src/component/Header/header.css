@@ -1,0 +1,36 @@
+#header > div{
+    
+    position: absolute;
+    top: 50%;  
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+
+}
+
+#header h5{
+    margin: 0px;
+    font-size: 50px;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    background-color: none;
+    color: white;
+ }
+#header h5 > span{
+   color: #E60965;
+}
+.customButton{
+    border-radius: 5px;
+    font-size: 20px;
+    color:white;
+    border: 1px solid white;
+    margin: 25px;
+    background-color:transparent;
+    padding: 15px;
+    transition: all 99ms ease-in;
+}
+
+.customButton:hover{
+  background-color: #E60965;
+  border: #E60965 solid 1px;
+}
+

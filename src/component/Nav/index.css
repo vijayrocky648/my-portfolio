@@ -1,0 +1,16 @@
+nav{
+    background: #334257;
+}
+.navbarsection{
+    background: #334257;
+}
+.navbarsection *{
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+.nav-link{
+    color: white !important;
+}
+.nav-link.active{
+    font-weight: bold;
+    color: #E60965 !important;
+}

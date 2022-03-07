@@ -1,0 +1,18 @@
+.myProfile{
+    height: 200px;
+    width: 200px;
+    background-color: red;
+    margin-top: 15px;
+    border-radius: 100px;
+}
+.aboutme{
+    padding: 10px;
+}
+.aboutsection{
+    font-family: 'Shippori Antique B1', sans-serif;
+}
+@media screen and (max-width:"800px") {
+    .aboutsection *{
+        font-size: 12px !important;
+    }
+}
