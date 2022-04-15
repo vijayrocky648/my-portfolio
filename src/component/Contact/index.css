@@ -1,0 +1,43 @@
+.footer-text{
+    padding: 1%;
+    text-align: center;
+    color: white;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+.underLine{
+    margin-left: auto;
+    margin-right: auto;
+    height: 5px;
+    width: 100px;
+    background-color: white;
+}
+.contactComponent *{
+    color: white;
+}
+.bannerContactInfo{
+    margin: 2%;
+}
+.formData *{
+    margin: 10px;
+    width: 100%;
+}
+.formData input,textarea{
+    
+    padding: 5px;
+    background-color: #1e242c;
+    border: none;
+}
+.formData textarea{
+    height: 100px;
+    resize: none;
+}
+.formData input,textarea:focus{
+    outline: none;
+}
+.formData button{
+    background-color: #00a1a7;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 10px;
+}

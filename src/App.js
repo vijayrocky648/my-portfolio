@@ -3,6 +3,10 @@ import HEADER from './component/Header'
 import './App.css';
 import NAVBAR from './component/Nav/index'
 import ABOUT from './component/Section/About'
+import EXPERIENCE from './component/Section/Experience';
+import PROJECT from './component/Project';
+import CONTACT from './component/Contact';
+import FOOTER from './component/Fotter';
 
 
 
@@ -44,6 +48,18 @@ function App() {
       <div className='aboutsection'>
          <ABOUT animateBar = {animateBar}/>
       </div>
+      <div className='aboutsection'>
+         <EXPERIENCE/>
+      </div>
+      <div className='aboutsection'>
+         <PROJECT/>
+      </div>
+      <section className='aboutsection' style={{backgroundColor:"#252934"}}>
+         <CONTACT/>
+      </section>
+      <section className='aboutsection' style={{backgroundColor:"#1b242f"}}>
+         <FOOTER/>
+      </section>
     </div>
   );
 }

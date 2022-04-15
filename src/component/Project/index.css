@@ -1,0 +1,74 @@
+.card-body ul{
+    text-align: start;
+}
+#project .card{
+    border-radius: 10px;
+    margin-top: 2%;
+    transition: all 500ms ease-in;
+}
+.customfooter{
+    background-color: #00a1a7;
+    color: white;
+}
+
+
+.card-title{
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    margin: 0px !important;
+    padding: 10px;
+    background-color: #00a1a7;
+    color:white;
+}
+#project .card:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.card-text,.card-body>ul{
+    font-size: 14px;
+}
+.projectInfo{
+    position: absolute;
+    height: 0%;
+    width: 100%;
+    background-color: #00a1a7;
+    z-index: 1;
+    transition: height 200ms ease;
+    opacity: .6;
+    visibility: hidden;
+   
+}
+.projectInfo>a>svg{
+   
+    height: 50px;
+    fill: white;
+}
+.projectImage{
+    position: relative; 
+}
+
+.projectImage::before{
+    position:absolute;
+    width: 100%;
+    height: 0%;
+    content: '';
+    background: #00a1a7;  
+    opacity: .6;
+    transition: all 200ms ease;
+}
+
+.projectImage::after{
+    position:absolute;
+    width: 100%;
+    height: 0%;
+    bottom: 0;
+    left: 0;
+    content: '';
+    opacity: .6;
+    background: #00a1a7;  
+    transition: all 200ms ease;
+}
+.projectImage:hover::before{
+   height: 50%;
+}
+.projectImage:hover::after{
+    height: 50%;
+ }

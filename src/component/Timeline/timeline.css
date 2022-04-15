@@ -1,0 +1,79 @@
+.timeline_circle{
+     border-radius: 10px;
+     background-color: #00a1a7;
+     height: 20px;
+     width: 20px;
+     transition: all 100ms ease-in;
+}
+.timeline_parent{
+    display: flex;
+    cursor: pointer;   
+    justify-content: center;
+    margin-bottom: 5%;
+    
+}
+.timeline_content{
+    width: 40%;
+    margin: 0% 20px;
+}
+.timeline_line{
+    width: 3px;
+    height: 100%;
+    background-color: #00a1a7;
+}
+.timeline_line{
+   display: inline-block;
+   margin: 10px 0px;
+}
+.timeline_parent h4{
+    color: #E60965 ;
+}
+.timeline_parent:hover h4{
+    text-decoration: underline;
+}
+.timeline_parent:hover .timeline_circle{
+    border: 4px solid #00a1a7;
+    background-color: white;
+
+}
+.yearInfo{
+    font-weight: 700;
+    color: #E60965 ;
+}
+.timeline_content p,h4{
+    word-wrap: break-word;
+}
+.min_year{
+    display:none;
+}
+@media screen and (max-width:769px) {
+    [ordering~=two] {
+        order: 2;
+        display: none;
+      }
+     [ordering~=three] {
+         order: 3;
+         width: 60%;
+     }
+     .timeline_design{
+         order: 1;
+     }
+     .timeline_parent p{
+         font-size: 12px;
+         text-align: start !important;
+     }
+     .timeline_parent h4{
+        font-size: 15px;
+        text-align: start !important;
+    }
+     .timeline_content[ordering~=two] {
+        width: auto;
+    }
+    .min_year{
+        display:block;
+    }
+     
+    
+    
+    
+}

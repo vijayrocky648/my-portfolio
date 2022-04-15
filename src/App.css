@@ -3,9 +3,10 @@
 }
 body{
   margin: 0;
+ 
   overflow-y: auto;
   overflow-x: hidden; 
-  background: black
+  background: white;
 }
 .App-logo {
   height: 40vmin;
@@ -48,4 +49,9 @@ body{
   position: sticky;
   top:0;
   z-index: 2;
+}
+.webHeader{
+  padding: 5%;
+  color: #E60965;
+  font-family: 'Shippori Antique B1', sans-serif;
 }

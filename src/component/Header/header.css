@@ -16,6 +16,7 @@
     color: white;
  }
 #header h5 > span{
+   font-size: 45px;
    color: #E60965;
 }
 .customButton{

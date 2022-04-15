@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BARCHART from  '../../Bar/index'
 import './index.css'
+import  PROFILEPIC from '../../../img/profile.jpg'
 function ABOUT(props) {
 
     
@@ -34,7 +35,7 @@ function ABOUT(props) {
     return (  <div className="container-fluid aboutsection d-flex align-items-center" style={{minHeight:"600px",height:"auto"}}>
         <div className="row  h-100 align-items-center">
            <div className="col-md-4 offset-md-1">
-                <img className="myProfile"></img>
+                <img className="myProfile" src={PROFILEPIC}></img>
                 <p className='aboutme'>I'm a Front-End Developer from Chennai in India,
 I have serious passion for UI effects, animations and creating intuitive,
 dynamic user experiences.
