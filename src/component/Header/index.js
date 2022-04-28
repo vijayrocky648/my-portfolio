@@ -22,15 +22,15 @@ const HEADER = () => {
         }
 
         var canvas = document.querySelector('canvas')
-        var header = document.getElementById('header')
-        header.style.height = window.innerHeight + "px";
+        var header = document.getElementById('header')        
 
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+        
+        canvas.width = window.screen.width;
+        canvas.height = window.screen.height;
 
         document.addEventListener('resize', () => {
-            canvas.width = window.innerWidth
-            canvas.height = window.innerHeight
+            canvas.width = window.screen.width;
+            canvas.height = window.screen.height;
             stars = []
             init()
         })
@@ -127,7 +127,7 @@ const HEADER = () => {
                 stars.push(new Star())
             }
 
-            //createNewStar();
+            createNewStar();
         }
 
         init()

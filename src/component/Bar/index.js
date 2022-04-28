@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './index.css'
 function BARCHART(props) {
     useEffect(()=>{
-       if(props.animateBar){
-         let barpercentage = document.getElementsByClassName('barpercentage')     
-         barpercentage[props.index].children[0].style.height= `${100}%`
-         barpercentage[props.index].children[0].style.width= `${props.percentage}%`
-       }
+      setTimeout(()=>{
+        if(props.animateBar){
+          let barpercentage = document.getElementsByClassName('barpercentage')     
+          barpercentage[props.index].children[0].style.height= `${100}%`
+          barpercentage[props.index].children[0].style.width= `${props.percentage}%`
+        }
+      },800)
+     
      
     },[props.animateBar])
     return (<div className="barchart">

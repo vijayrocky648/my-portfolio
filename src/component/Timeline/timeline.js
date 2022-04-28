@@ -1,5 +1,4 @@
 import './timeline.css'
-import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import react,{ useEffect } from 'react';
 
@@ -21,9 +20,7 @@ function DETAILEXPERIENCE(props){
 }
 
 function TIMELINE(props) {
-     useEffect(()=>{
-       AOS.init();
-     },[])
+   
 
     return (
         <div className="timeline_parent">

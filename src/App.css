@@ -1,9 +1,10 @@
 .App {
+  overflow-y: hidden;
+  overflow: hidden;
   text-align: center;
 }
 body{
   margin: 0;
- 
   overflow-y: auto;
   overflow-x: hidden; 
   background: white;
@@ -53,5 +54,13 @@ body{
 .webHeader{
   padding: 5%;
   color: #E60965;
-  font-family: 'Shippori Antique B1', sans-serif;
+  font-family: 'Akshar', sans-serif;
+}
+.navbar-toggler:focus{
+  outline: none;
+  border: none;
+  box-shadow: none !important;
+}
+#experience *{
+  font-family: 'Akshar', sans-serif;
 }

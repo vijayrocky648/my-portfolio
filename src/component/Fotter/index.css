@@ -1,0 +1,15 @@
+.iconImage:hover{
+    background-color: #00a1a7;
+    transform:scale(0.9);
+}
+.iconImage{
+    background-color: rgb(37, 41, 52);
+    transition: all .3s;
+    padding:10px 15px;
+}
+.iconImage svg{
+    fill: white;
+}
+.footer *{
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}

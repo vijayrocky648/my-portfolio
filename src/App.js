@@ -7,14 +7,17 @@ import EXPERIENCE from './component/Section/Experience';
 import PROJECT from './component/Project';
 import CONTACT from './component/Contact';
 import FOOTER from './component/Fotter';
-
+import AOS from 'aos';
 
 
 function App() {
-  const [animateBar,setAnimateBar] = useState(false)
-  
+  const [animateBar, setAnimateBar] = useState(false)
 
-  useEffect(()=>{
+
+  useEffect(() => {
+
+    AOS.init();
+
     document.addEventListener("scroll", reveal);
   })
 
@@ -31,36 +34,43 @@ function App() {
       setAnimateBar(false);
     }
   }
-  
 
- 
+
+
   return (
     <div className="App">
-       <HEADER />
-      <div className="navbarsection customsettingnav">
+      <HEADER />
+      <div className="navbarsection customsettingnav" style={{position:"sticky",top:"0px"}}>
         <div className='container ' >
-           <NAVBAR />
-        </div>       
-        <div style={{widht:"100%",height:"2px",backgroundColor:"#4FD3C4"}}>
-          
+          <NAVBAR />
+        </div>
+        <div style={{ widht: "100%", height: "2px", backgroundColor: "#4FD3C4" }}>
+
         </div>
       </div>
-      <div className='aboutsection'>
-         <ABOUT animateBar = {animateBar}/>
+      <div className='aboutsection' id='about'>
+        <ABOUT animateBar={animateBar} />
       </div>
-      <div className='aboutsection'>
-         <EXPERIENCE/>
+      <div className='aboutsection' id='experience'>
+        <EXPERIENCE />
       </div>
-      <div className='aboutsection'>
-         <PROJECT/>
+      <div className='container' id='project'>
+        <PROJECT />
       </div>
-      <section className='aboutsection' style={{backgroundColor:"#252934"}}>
-         <CONTACT/>
+      <section className='aboutsection' id='contact' style={{ backgroundColor: "#252934" }}>
+        <div className='container'>
+          <CONTACT />
+        </div>
+
       </section>
-      <section className='aboutsection' style={{backgroundColor:"#1b242f"}}>
-         <FOOTER/>
+      <section className='aboutsection' style={{ backgroundColor: "#1b242f" }}>
+        <div className='container'>
+          <FOOTER />
+        </div>
+
       </section>
     </div>
+
   );
 }
 
