@@ -18,7 +18,7 @@
     margin: 2%;
 }
 .formData *{
-    margin: 10px;
+    margin: 10px 0px 10px 0px;
     width: 100%;
 }
 .formData input,textarea{

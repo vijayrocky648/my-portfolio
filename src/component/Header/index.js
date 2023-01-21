@@ -1,161 +1,92 @@
-import React, { useEffect } from "react";
-import './header.css'
-import PROFILEPIC from '../../img/profilepic.jpg'
-import HTML from '../../img/html.png'
-import NODEJS from '../../img/javascript.png'
-import REACT from '../../img/react.png'
+import React, { useEffect, useRef, useState } from "react";
+import "./header.css";
+import PROFILEPIC from "../../img/profilepic.jpg";
+import HTML from "../../img/html.png";
+import NODEJS from "../../img/javascript.png";
+import REACT from "../../img/react.png";
+import CSHARP from "../../img/c#.png";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import * as THREE from "three";
+import { BufferGeometry, Color, Vector3 } from "three";
+import { Sparkles, Text } from "@react-three/drei";
+
+const AddStar = () => {
+  let shape = new THREE.CircleGeometry(0.03, 10, 10);
+  let material = new THREE.MeshBasicMaterial();
+  material.color = new THREE.Color("white");
+  let mesh = new THREE.Mesh(shape, material);
+  let [x, y, z] = Array(3)
+    .fill()
+    .map(() => THREE.MathUtils.randFloatSpread(20));
+  
+  mesh.position.set(x, y, z);
+  return mesh;
+};
 
 
 const HEADER = () => {
+  const [star,setStar] = useState([]);
+  
+  useEffect(()=>{
+     if(star.length==0){
+      setStar(Array(80).fill().map(x=>AddStar()))
+     }
+  },[])
+  const meshRef = useRef();
 
-    useEffect(() => {
-        var n_stars = 40
-        var colors = ['#176ab6', '#fb9b39']
-        var images = [new Image(), new Image(), new Image]
-        images[0].src = HTML
-        images[1].src = NODEJS
-        images[2].src = REACT
-
-        var isLoadingStar = false;
-        for (let i = 0; i < 98; i++) {
-            colors.push('#fff')
+  const AddStarInScene = () => {
+    const { scene } = useThree();
+    if(scene.children.length<80){
+      star.forEach((value) => {
+        scene.add(value);
+      });
+    }
+    
+  };
+ 
+  const MoveStarsInScene = ()=>{
+    debugger;
+    const {scene} = useThree()
+    useFrame(({ clock })=>{
+     
+      scene.children.forEach((x)=>{
+        if(x.geometry){
+          if(x.position.y<5){
+            x.position.y +=.02;
+          }else{
+            scene.remove(x);
+            x.geometry.dispose();
+            x.material.dispose();
+            scene.add(AddStar())
+          }
         }
-
-        var canvas = document.querySelector('canvas')
-        var header = document.getElementById('header')        
-
         
-        canvas.width = window.screen.width;
-        canvas.height = window.screen.height;
-
-        document.addEventListener('resize', () => {
-            canvas.width = window.screen.width;
-            canvas.height = window.screen.height;
-            stars = []
-            init()
-        })
-
-        canvas.style.background = '#000'
-        var c = canvas.getContext('2d')
-
-        const randomInt = (max, min) => Math.floor(Math.random() * (max - min) + min)
-
-        var bg = c.createRadialGradient(canvas.width / 2, canvas.height * 3, canvas.height, canvas.width / 2, canvas.height, canvas.height * 4);
-        bg.addColorStop(0, "#32465E");
-        bg.addColorStop(.4, "#000814");
-        bg.addColorStop(.8, "#000814");
-        bg.addColorStop(1, "#000");
-
-
-        class MovingStars {
-            constructor(x, y, radius, color, image) {
-
-                this.x = x || 0;
-                this.y = y || randomInt(0, canvas.height) + 50;
-                this.radius = radius || 20
-                this.color = color
-                this.dy = Math.random * .2;
-                this.subtractX = this.x == canvas.width ? true : false;
-                this.subtractY = this.y > canvas.height / 2 ? true : false;
-                this.image = image;
-            }
-            draw() {
-
-                c.beginPath()
-                //c.arc(this.x, this.y, 10, 0, 2 * Math.PI);
-                c.drawImage(this.image, this.x, this.y, 20, 20);
-                c.fillStyle = this.color
-                c.fill()
-                c.stroke()
-                c.closePath()
-
-            }
-            update() {
-                this.draw();
-                this.x = this.subtractX ? this.x - 3 : this.x + 3;
-                this.y = this.subtractY ? this.y - 3 : this.y + 3;
-
-            }
-
-        }
-        function createNewStar() {
-            movingStars = []
-            let randomValue = randomInt(1, 3);
-            for (let i = 0; i < randomValue; i++) {
-                let startingPostion = randomInt(0, 2) == 0 ? 0 : canvas.width
-                movingStars.push(new MovingStars(startingPostion, null, Math.PI * 2, 'white', images[randomInt(0, 3)]))
-            }
-        }
-
-        class Star {
-            constructor(x, y, radius, color) {
-                this.x = x || randomInt(0, canvas.width)
-                this.y = y || randomInt(0, canvas.height)
-                this.radius = radius || Math.random() * 1.1
-                this.color = color || colors[randomInt(0, colors.length)]
-                this.dy = -Math.random() * .3
-
-            }
-            draw() {
-                c.beginPath()
-                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-                c.shadowBlur = randomInt(3, 15)
-                c.shadowColor = this.color
-                c.strokeStyle = this.color
-                c.fillStyle = 'rgba( 255, 255, 255, .5)'
-                c.fill()
-                c.stroke()
-                c.closePath()
-            }
-            update(arrayStars = []) {
-                if (this.y - this.radius < 0) this.createNewStar(arrayStars)
-                this.y += this.dy
-                this.draw()
-            }
-            createNewStar(arrayStars = []) {
-                let i = arrayStars.indexOf(this)
-                arrayStars.splice(i, 1)
-                arrayStars.push(new Star(false, canvas.height + 5))
-            }
-        }
-
-        var stars = []
-        var movingStars = []
-        function init() {
-           
-            for (let i = 0; i < 10; i++) {
-                stars.push(new Star())
-            }
-
-            createNewStar();
-        }
-
-        init()
-
-        function animate() {
-           
-           
-            c.clearRect(0, 0, canvas.width, canvas.height)
-            c.fillStyle = bg
-            c.fillRect(0, 0, canvas.width, canvas.height)
-         
-            stars.forEach(s => { s.update(stars) })
-            if (movingStars.length == 0) {
-                ///console.log("Calling Create Star")
-                createNewStar();
-            }
-            movingStars.forEach(x => x.update())
-            movingStars = movingStars.filter(moveingstart => (moveingstart.y < canvas.height + 300 && moveingstart.y >= -300))
-          
-            requestAnimationFrame(animate)
-
-        }
-        requestAnimationFrame(animate)
+      })
+    })
+  }
+  function Caption({ children }) {
+    const { width } = useThree((state) => state.viewport)
+    return (
+      <Text
+        position={[0, 0, -10]}
+        lineHeight={0.8}
+        font="/Ki-Medium.ttf"
+        fontSize={width / 8}
+        material-toneMapped={false}
+        anchorX="center"
+        anchorY="bottom"
+        color={"red"}
+        castShadow={"true"}
+        letterSpacing="0"
         
-    }, [])
-
-    return <div id="header">
-        <div>
+         >
+        {children}
+      </Text>
+    )
+  }
+  return (
+    <div id="header">
+      <div>
             <h5>Hello <span>I'm Vijay</span>
                 <br />
                 I'm a full-stack developer
@@ -163,9 +94,28 @@ const HEADER = () => {
             <button className="customButton">View my work</button>
         </div>
 
-        <canvas>
-        </canvas>
-
+      <Canvas style={{backgroundColor:"black",zIndex:"-1",height:"100vh"}} id="animateCanvas" onCreated={({ gl }) => {
+       
+        gl.setClearColor(new THREE.Color('#020207'))
+      }}>
+        <group>
+          <mesh ref={meshRef} position={new Vector3(0,0,0)}>
+            <meshBasicMaterial
+              attach="material"
+              color="red"
+              transparent
+              opacity={0.5}
+              roughness={1}
+              metalness={0}
+            ></meshBasicMaterial>
+          </mesh>
+          
+           <AddStarInScene />
+          <MoveStarsInScene/>
+          <spotLight></spotLight>
+        </group>
+      </Canvas>
     </div>
-}
+  );
+};
 export default HEADER;

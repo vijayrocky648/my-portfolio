@@ -1,19 +1,37 @@
 .App {
+  min-height: 100%;
   overflow-y: hidden;
   overflow: hidden;
   text-align: center;
 }
+#root{
+  height: 100%;
+}
 body{
+  height: 100vh;
   margin: 0;
   overflow-y: auto;
   overflow-x: hidden; 
   background: white;
+  scrollbar-color: dark !important;
 }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #334257; 
+  border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-track {
+  background: #212529;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

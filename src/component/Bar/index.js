@@ -3,7 +3,7 @@ import './index.css'
 function BARCHART(props) {
     useEffect(()=>{
       setTimeout(()=>{
-        if(props.animateBar){
+        if(true){
           let barpercentage = document.getElementsByClassName('barpercentage')     
           barpercentage[props.index].children[0].style.height= `${100}%`
           barpercentage[props.index].children[0].style.width= `${props.percentage}%`

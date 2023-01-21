@@ -1,7 +1,7 @@
 import './index.css'
 
 function NAVBAR() {
-    return ( <nav class="navbar navbar-expand-lg customsettingnav" >
+    return ( <nav class="navbar navbar-expand-lg customsettingnav nav " >
     <div class="container">  
      <a class="navbar-brand" href="#"></a>   
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,10 @@ function NAVBAR() {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#about">About</a>
-          </li>         
+          </li>      
+          <li class="nav-item">
+            <a class="nav-link" href="#experience">Journey</a>
+          </li>    
           <li class="nav-item">
             <a class="nav-link" href="#contact">Contact</a>
           </li> 

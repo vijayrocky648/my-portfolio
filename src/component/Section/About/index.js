@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BARCHART from '../../Bar/index'
 import './index.css'
-import PROFILEPIC from '../../../img/profile.jpg'
+import PROFILEPIC from '../../../img/profilePic.png'
 import {collection, getDocs} from 'firebase/firestore'
 import db from '../../../firebase/firebaseconfig';
 
@@ -11,12 +11,11 @@ function ABOUT(props) {
     const firebaseData = collection(db,"About")
     const [skill,setSkill] = useState([])
     
-    useEffect( async()=>{
-      const document =  await getDocs(firebaseData)
-      const data =  document.docs.length>0&&document.docs[0].data()
-      console.log(data.Skill||[])
-      setSkill(data.Skill||[])
-    //   setSkill(data.sk)
+    useEffect(()=>{
+      getDocs(firebaseData).then((document)=>{
+        const data =  document.docs.length>0&&document.docs[0].data()
+        setSkill(data.Skill||[])
+      })
     },[])
 
     const skills = [{
@@ -57,7 +56,7 @@ function ABOUT(props) {
         <div  className="row  align-items-center">
             <div className="col-md-5 offset-md-1" data-aos="fade-right" data-aos-delay="500" >
                 <img className="myProfile" src={PROFILEPIC}></img>
-                <p className='aboutme'>I'm a Front-End Developer from Chennai in India,
+                <p className='aboutme'>I'm a <b>FullStack Developer</b> from Chennai in India,
                     I have serious passion for UI effects, animations and creating intuitive,
                     dynamic user experiences.
                     Let's make something special.</p>
