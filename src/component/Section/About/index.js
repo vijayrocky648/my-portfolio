@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BARCHART from '../../Bar/index'
 import './index.css'
-import PROFILEPIC from '../../../img/profilePic.png'
+import PROFILEPIC from '../../../img/Profile.jpg'
 import {collection, getDocs} from 'firebase/firestore'
 import db from '../../../firebase/firebaseconfig';
 
@@ -48,8 +48,8 @@ function ABOUT(props) {
     return (<div className="" >
         <div className="row align-items-center" style={{margin:"60px 0px"}}>
             <div className='col-md-12'>
-                <h1 className='footer-text' style={{ color: "black" }} data-aos="fade-right" >ABOUT</h1>
-                <div className='underLine' data-aos="fade-right" style={{ background: "black" }}>
+                <h1 className='footer-text' style={{ color: "rgb(230, 9, 101)" }} data-aos="fade-right" >ABOUT</h1>
+                <div className='underLine' data-aos="fade-right" style={{ background: "rgb(230, 9, 101)" }}>
                 </div>
             </div>
         </div>
@@ -63,9 +63,6 @@ function ABOUT(props) {
             </div>
             <div className="offset-md-1 col-md-5 p-4" style={{ display: "flex", alignItems: "center" }} data-aos="fade-left" data-aos-delay="500">
                 <div style={{ width: "100%" }}>
-
-
-                    {/* <BARCHART label="React" percentage={60} /> */}
                     {skill.map((x, index) => <BARCHART label={x.skillName} percentage={x.percentage} index={index} animateBar={props.animateBar} />)}
                 </div>
             </div>
