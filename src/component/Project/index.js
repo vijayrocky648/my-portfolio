@@ -17,29 +17,7 @@ function PROJECT() {
     useEffect(() => {
         const document =getDocs(firebaseData).then((document)=>{
             const data = document.docs.length > 0 && document.docs[0].data()
-            console.log(data)
             setProject(data.Project)
-            console.log(ref(storage, 'gs://vijayportfolio-49514.appspot.com/moneypulse.jpg'));
-            getDownloadURL(ref(storage, 'gs://vijayportfolio-49514.appspot.com/moneypulse.jpg'))
-                .then((url) => {
-                    // `url` is the download URL for 'images/stars.jpg'
-    
-                    // This can be downloaded directly:
-                    const xhr = new XMLHttpRequest();
-                    xhr.responseType = 'blob';
-                    xhr.onload = (event) => {
-                        const blob = xhr.response;
-                    };
-                    xhr.open('GET', url);
-                    xhr.send();
-    
-                    // Or inserted into an <img> element
-                    const img = document.getElementById('myimg');
-                    img.setAttribute('src', url);
-                })
-                .catch((error) => {
-                    // Handle any errors
-                });
         })
         
     }, [])

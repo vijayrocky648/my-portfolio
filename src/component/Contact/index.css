@@ -41,3 +41,8 @@
     border: none;
     padding: 10px;
 }
+.customToastClass{
+    background-color: #212529  !important;
+    color: white !important;
+    font-family: 'Akshar', sans-serif;
+}

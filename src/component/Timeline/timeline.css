@@ -46,6 +46,17 @@
 .min_year{
     display:none;
 }
+.contentInfo img{
+    border-radius: 40%;
+    margin-bottom: 2%;
+    display: block;
+    width: 15%;
+    height: 15%;
+}
+
+.checkAlignement{
+   margin-left: auto;
+}
 @media screen and (max-width:769px) {
     [ordering~=two] {
         order: 2;
@@ -73,7 +84,10 @@
         display:block;
     }
      
-    
+    .checkAlignement{
+        margin-right: unset;
+        margin-left: unset;
+     }
     
     
 }
