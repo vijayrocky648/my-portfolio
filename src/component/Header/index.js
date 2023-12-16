@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import "./header.css";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { BufferGeometry, Color, Vector3 } from "three";
-import { Center, Text, Text3D } from "@react-three/drei";
-import Texture from '../../img/texture.jpg'
-import Texture2 from '../../img/texture2.jpg'
+import { Center, Html, Text, Text3D, useProgress } from "@react-three/drei";
+import Texture from "../../img/texture.jpg";
+import Texture2 from "../../img/texture2.jpg";
 const fargmentSharder = `void main(){
   gl_FragColor = vec4(1,6,1,1);
 }`;
@@ -31,7 +31,12 @@ const AddStar = () => {
 const HEADER = () => {
   const materialRef = useRef();
   const [star, setStar] = useState([]);
-
+  const loadManager = new THREE.LoadingManager();
+  function Loader() {
+    const { active, progress, errors, item, loaded, total } = useProgress();
+    console.log(total, loaded, item, errors, active);
+    return <Html center>{progress} % loaded</Html>;
+  }
   useEffect(() => {
     if (star.length == 0) {
       setStar(
@@ -54,10 +59,10 @@ const HEADER = () => {
 
   const MoveStarsInScene = () => {
     const { scene } = useThree();
-    
+
     useFrame(({ clock }) => {
       scene.children.forEach((x) => {
-        if(x.type=="Mesh" && x.children.length==0){
+        if (x.type == "Mesh" && x.children.length == 0) {
           if (x.geometry) {
             if (x.position.y < 5) {
               x.position.y += 0.02;
@@ -66,74 +71,47 @@ const HEADER = () => {
               x.geometry.dispose();
               x.material.dispose();
               scene.add(AddStar());
-            }      
-        }
+            }
+          }
         }
       });
     });
   };
-  function AddSpotLight() {
-    const { scene } = useThree();
-    const spotLight = new THREE.SpotLight(0xffffff);
-    spotLight.position.set(100, 1000, 100);
 
-    spotLight.castShadow = true;
+  const MoveMyText = () => {
+    let movedown = true;
+    let moveRight = true;
+    const maxMovement = 0.2;
+    const maxRightMovement = 0.25;
+    useFrame((param) => {
+      const position = materialRef.current?.position;
+      const rotation = materialRef.current?.rotation;
 
-    spotLight.shadow.mapSize.width = 1024;
-    spotLight.shadow.mapSize.height = 1024;
+      if (position == null || rotation == null) {
+        return;
+      }
 
-    spotLight.shadow.camera.near = 500;
-    spotLight.shadow.camera.far = 4000;
-    spotLight.shadow.camera.fov = 30;
-
-    scene.add(spotLight);
-  }
-  const texture = ()=>new THREE.TextureLoader().load(Texture)
-  const MoveMyText = ()=>{
-     console.log(materialRef)
-     let movedown = true;
-     let moveRight = true;
-     const maxMovement = 0.20;
-     const maxRightMovement = 0.25;
-     useFrame((param)=>{
-       
-       if(materialRef.current.position.y<-1*maxMovement){
+      if (position?.y < -1 * maxMovement) {
         movedown = false;
-       }
-       if(materialRef.current.position.y>0){
+      }
+      if (position.y > 0) {
         movedown = true;
-       }
-       if(materialRef.current.rotation.y<0){
+      }
+      if (rotation.y < 0) {
         moveRight = true;
-       }
-       if(materialRef.current.rotation.y>maxRightMovement){
+      }
+      if (rotation.y > maxRightMovement) {
         moveRight = false;
-       }
-       if(movedown){
-         materialRef.current.position.y -= 0.001;
-       }else{
-         materialRef.current.position.y += 0.001;
-       }
-
-      //  if(moveRight){
-      //    materialRef.current.rotation.y += 0.0001;
-      //  }else{
-      //    materialRef.current.rotation.y -= 0.0001;
-      //  }
-     })
-
-  }
+      }
+      if (movedown) {
+        position.y -= 0.001;
+      } else {
+        position.y += 0.001;
+      }
+    });
+  };
   return (
     <div id="header">
-      <div>
-        {/* <h5>
-          Hello <span>I'm Vijay</span>
-          <br />
-          I'm a full-stack developer
-        </h5> */}
-        {/* <button className="customButton">View my work</button> */}
-      </div>
-
       <Canvas
         style={{
           zIndex: "-1",
@@ -144,51 +122,47 @@ const HEADER = () => {
           gl.setClearColor(new THREE.Color("#0f2027"));
         }}
       >
-        {/* <ambientLight intensity={0.5} /> */}
-        {/* <spotLight
-          position={[-2, -1, 10]}
-          angle={0.15}
-          penumbra={0}
-          shadow-mapSize={[512, 512]}
-          castShadow
-        /> */}
         <mesh ref={meshRef} position={new Vector3(0, 0, 0)}>
-       <Center ref={materialRef}>
-        <Text3D
-          position={[-4,0,0]}
           
-          bevelSize={0.01}
-          bevelThickness={0.1}
-          height={0.1}
-          lineHeight={0.8}
-          letterSpacing={0.01}
-          size={window.innerWidth<470?.3:.4}
-          font="/Inter_Bold.json">
-          {`Hello I'm Vijay`}
-          <ambientLight/>
-          <meshMatcapMaterial matcap={new THREE.TextureLoader().load(Texture)}/>
-          {/* <meshNormalMaterial/> */}
-        </Text3D>
-        <Text3D
-        position={[-4.5,-0.5,0]}
+            <Center ref={materialRef}>
+              <Text3D
+                position={[-4, 0, 0]}
+                bevelSize={0.01}
+                bevelThickness={0.1}
+                height={0.1}
+                lineHeight={0.8}
+                letterSpacing={0.01}
+                size={window.innerWidth < 470 ? 0.3 : 0.4}
+                font="/Inter_Bold.json"
+              >
+                {`Hello I'm Vijay`}
+                <ambientLight />
+                <meshMatcapMaterial
+                  matcap={new THREE.TextureLoader().load(Texture)}
+                />
+              </Text3D>
+              <Text3D
+                position={[-4.5, -0.5, 0]}
+                bevelSize={0.01}
+                bevelThickness={0.1}
+                height={0.1}
+                lineHeight={0.8}
+                letterSpacing={0.01}
+                size={window.innerWidth < 470 ? 0.3 : 0.4}
+                font="/Inter_Bold.json"
+              >
+                {`Fullstack Developer`}
+                <ambientLight />
+                <meshMatcapMaterial
+                  matcap={new THREE.TextureLoader().load(Texture2)}
+                />
+              </Text3D>
+
+            </Center>
           
-          bevelSize={0.01}
-          bevelThickness={0.1}
-          height={0.1}
-          lineHeight={0.8}
-          letterSpacing={0.01}
-          size={window.innerWidth<470?.3:.4}
-          font="/Inter_Bold.json">
-          {`Fullstack Developer`}
-          <ambientLight/>
-          <meshMatcapMaterial matcap={new THREE.TextureLoader().load(Texture2)}/>
-          {/* <meshNormalMaterial/> */}
-        </Text3D>
-        </Center>
-       
           <AddStarInScene />
-          <MoveStarsInScene /> 
-          <MoveMyText/>
+          <MoveStarsInScene />
+          <MoveMyText />
         </mesh>
       </Canvas>
     </div>
