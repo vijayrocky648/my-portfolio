@@ -16,7 +16,8 @@ function EXPERIENCE() {
     const sortArray = (a,b)=>{
         return Number(a.order)-Number(b.order);
     }
-    return ( <div className="container">
+    return ( 
+    <div className="container" id="experience">
         <h3 style={{padding:"5%",color:"#E60965",fontFamily:"ZCOOL QingKe HuangYou', cursive"}}>
         <span>&#9889;</span>MY JOURNEY
         <span>&#9889;</span></h3>

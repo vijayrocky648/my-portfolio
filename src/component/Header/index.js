@@ -32,11 +32,7 @@ const HEADER = () => {
   const materialRef = useRef();
   const [star, setStar] = useState([]);
   const loadManager = new THREE.LoadingManager();
-  function Loader() {
-    const { active, progress, errors, item, loaded, total } = useProgress();
-    console.log(total, loaded, item, errors, active);
-    return <Html center>{progress} % loaded</Html>;
-  }
+
   useEffect(() => {
     if (star.length == 0) {
       setStar(
@@ -126,13 +122,13 @@ const HEADER = () => {
           
             <Center ref={materialRef}>
               <Text3D
-                position={[-4, 0, 0]}
+                position={[-4.1, 0, 0]}
                 bevelSize={0.01}
                 bevelThickness={0.1}
                 height={0.1}
-                lineHeight={0.8}
+                lineHeight={0.9}
                 letterSpacing={0.01}
-                size={window.innerWidth < 470 ? 0.3 : 0.4}
+                size={window.innerWidth < 470 ? 0.2 : 0.4}
                 font="/Inter_Bold.json"
               >
                 {`Hello I'm Vijay`}
@@ -148,7 +144,7 @@ const HEADER = () => {
                 height={0.1}
                 lineHeight={0.8}
                 letterSpacing={0.01}
-                size={window.innerWidth < 470 ? 0.3 : 0.4}
+                size={window.innerWidth < 470 ? 0.2 : 0.4}
                 font="/Inter_Bold.json"
               >
                 {`Fullstack Developer`}

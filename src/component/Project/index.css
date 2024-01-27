@@ -11,6 +11,10 @@
     color: white;
 }
 
+#project{
+  height:90vh;
+  margin-top: 5%;
+}
 
 .card-title{
     font-family: 'ZCOOL QingKe HuangYou', cursive;

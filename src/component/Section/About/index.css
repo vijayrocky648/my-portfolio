@@ -11,6 +11,9 @@
 .aboutsection{
     font-family: 'Akshar', sans-serif;
 }
+#about{
+    height:90vh;
+}
 @media screen and (max-width:"800px") {
     .aboutsection *{
         font-size: 12px !important;

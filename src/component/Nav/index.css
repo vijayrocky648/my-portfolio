@@ -1,5 +1,6 @@
 .nav{
     background: #334257;
+    font-family: 'Akshar', sans-serif;
 }
 .navbarsection{
     background: #334257;
@@ -24,3 +25,15 @@
     transition: transform 5s;
     transform: scale(-1.5); 
 }
+.hide{
+    display: none;
+}
+
+#navbar{
+    animation:mymove 1ms;
+}
+@keyframes mymove {
+  0% {height: 0px;}
+  100% {height: auto;}
+}
+  
